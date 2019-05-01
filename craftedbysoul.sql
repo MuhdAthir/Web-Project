@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2019 at 07:09 PM
+-- Generation Time: May 01, 2019 at 07:14 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -57,8 +57,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`cat_id`, `cat_name`) VALUES
-(1, 'Logo'),
-(4, 'Poster'),
+(1, 'Mug'),
+(4, 'Totebag'),
 (7, 'Bunting'),
 (8, 'Doodle');
 
@@ -73,6 +73,7 @@ CREATE TABLE `product` (
   `product_name` varchar(100) NOT NULL,
   `product_category` varchar(100) NOT NULL,
   `product_image` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
   `product_status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
