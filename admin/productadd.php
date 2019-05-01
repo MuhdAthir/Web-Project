@@ -50,7 +50,11 @@
 
   <div class="content">
     <h1>Add Product</h1>
-    <br><br>
+    <br>
+    <div style="text-align: left;">
+      <a href="productlist.php"><i class="fas fa-arrow-circle-left fa-lg"></i></a> 
+    </div>
+    <br>
     <div>
       <form action="productlist.php">
         <p>
