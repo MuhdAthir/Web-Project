@@ -52,7 +52,7 @@
     <h1>Add Product</h1>
     <br><br>
     <div>
-      <form action="productlist.html">
+      <form action="productlist.php">
         <p>
           <label>Product Name</label>
           <input type="text" name="cat" placeholder="Enter Category Name">
@@ -88,11 +88,11 @@
   <script type="text/javascript">
     
         $(function(){
-          $("#sidebar").load("include/sidebar.html"); 
+          $("#sidebar").load("include/sidebar.php"); 
         });
 
         $(function(){
-          $("#header").load("include/header.html"); 
+          $("#header").load("include/header.php"); 
         });
   </script>
 

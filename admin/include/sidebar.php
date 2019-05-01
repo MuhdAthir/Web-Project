@@ -1,7 +1,7 @@
-<!-- <.html
-   include('session.html');
-   include('dbcon.html');
-?> -->
+<?php
+   include('session.php');
+   include('dbcon.php');
+?>
 
 <!DOCTYPE html>
 <html>
@@ -74,25 +74,25 @@
 
 
   <div class="sidebar" id="mySidenav">
-    <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
     <button class="dropdown-btn"><i class="far fa-list-alt"></i> Order <i class="fas fa-caret-down"></i></button>
     <div class="dropdown-container">
-      <a href="orderlisttoday.html">Today's Orders</a>
+      <a href="orderlisttoday.php">Today's Orders</a>
       <hr>
-      <a href="orderlist.html">Pending Orders</a>
+      <a href="orderlist.php">Pending Orders</a>
     </div>
     <button class="dropdown-btn"><i class="fas fa-box"></i> Product <i class="fas fa-caret-down"></i></button>
     <div class="dropdown-container">
-    <a href="category.html">Category</a>
+    <a href="category.php">Category</a>
     <hr>
-    <a href="productlist.html">Product List</a>
+    <a href="productlist.php">Product List</a>
   </div>
     <!-- <a href="#about"><i class="fas fa-bell"></i> Notification</a>
     <a href="#about"><i class="fas fa-cog"></i> Setting</a> -->
-    <a href="report.html"><i class="fas fa-chart-line"></i> Report</a>
+    <a href="report.php"><i class="fas fa-chart-line"></i> Report</a>
     <button class="dropdown-btn"><i class="fas fa-cog"></i> Setting <i class="fas fa-caret-down"></i></button>
     <div class="dropdown-container">
-      <a href="message.html">Message</a>
+      <a href="message.php">Message</a>
     </div>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i></a>

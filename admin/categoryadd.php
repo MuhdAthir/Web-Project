@@ -1,3 +1,24 @@
+<?php
+  include('include/dbcon.php');
+
+  if(isset($_POST['saveCat']))
+  {
+    $sql = "INSERT INTO category (cat_name) 
+      VALUES ('".$_POST["cat"]."')";
+
+    $query = mysqli_query($conn,$sql);
+
+    if($query) {
+      echo "<script type='text/javascript'>";
+      echo 'alert("Record Add")';
+      echo 'window.location.href = "category.php";';
+      echo '</script>';
+
+    }
+
+  }    
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +66,16 @@
   <div id="header"></div>
 
 	<div class="content">
-		<h1>Edit Category</h1>
-    <br><br>
+		<h1>Add Category</h1>
+    <br>
+    <div style="text-align: left;">
+      <a href="category.php"><i class="fas fa-arrow-circle-left fa-lg"></i></a> 
+    </div>
+    <br>
     <div>
-      <form action="category.html">
+      <form action="" method="post">
         Category Name <input type="text" name="cat" placeholder="Enter Category Name"><br><br>
-        <button class="buttonAdd">Edit</button></a>
+        <button type="submit" name="saveCat" class="buttonAdd">Create</button></a>
       </form>
     </div>
         
@@ -62,11 +87,11 @@
 	<script type="text/javascript">
 		
         $(function(){
-          $("#sidebar").load("include/sidebar.html"); 
+          $("#sidebar").load("include/sidebar.php"); 
         });
 
         $(function(){
-          $("#header").load("include/header.html"); 
+          $("#header").load("include/header.php"); 
         });
 	</script>
 

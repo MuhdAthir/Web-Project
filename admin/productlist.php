@@ -52,7 +52,7 @@
     <div class="content">
         <h1>Product List</h1>
          <div style="text-align: right;">
-          <a href="productadd.html"><button class="buttonAdd"><i class="fas fa-plus"></i> Add New</button></a>
+          <a href="productadd.php"><button class="buttonAdd"><i class="fas fa-plus"></i> Add New</button></a>
         </div>
         
         <table border="1" style="width:100%" cellpadding="5">
@@ -74,7 +74,7 @@
                 <td>RM 15</td>
                 <td>Active</td>
                 <td>
-                    <a href="productedit.html"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>
+                    <a href="productedit.php"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>
                     <button class="buttonDelete" onclick="return confirm('Are you sure to delete?');"><i class="fas fa-trash-alt"></i> Delete</button>
                 </td>
             </tr>
@@ -85,7 +85,7 @@
                 <td>RM 30</td>
                 <td>Active</td>
                 <td>
-                     <a href="productedit.html"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>
+                     <a href="productedit.php"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>
                     <button class="buttonDelete" onclick="return confirm('Are you sure to delete?');"><i class="fas fa-trash-alt"></i> Delete</button>
                 </td>
             </tr>
@@ -101,15 +101,15 @@
         function changestat( statid, selectid )
         {
             var test = document.getElementsByClassName('status');
-            test[statid].innerHTML = selectid.value;
+            test[statid].inne.php = selectid.value;
         }
 
         $(function(){
-          $("#sidebar").load("include/sidebar.html"); 
+          $("#sidebar").load("include/sidebar.php"); 
         });
 
         $(function(){
-          $("#header").load("include/header.html"); 
+          $("#header").load("include/header.php"); 
         });
     </script>
 

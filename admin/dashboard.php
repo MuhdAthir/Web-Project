@@ -1,3 +1,7 @@
+<?php
+   include('include/session.php');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,25 +45,25 @@
 			<div>
 				<p style="padding: 10px">4 New Orders!</p> 
 				<hr>
-				<a href="orderlist.html"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
+				<a href="orderlist.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
 
 			<div>
 				<p style="padding: 10px">0 Pending Orders!</p> 
 				<hr>
-				<a href="orderlist.html"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
+				<a href="orderlist.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
 
 			<div>
 				<p style="padding: 10px">2 Total  Products!</p> 
 				<hr>
-				<a href="productlist.html"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
+				<a href="productlist.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
 
 			<div>
 				<p style="padding: 10px">1 Message!</p> 
 				<hr>
-				<a href="message.html"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
+				<a href="message.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
 
 			
@@ -72,11 +76,11 @@
 		
 
 		$(function(){
-	      $("#sidebar").load("include/sidebar.html"); 
+	      $("#sidebar").load("include/sidebar.php"); 
 	    });
 
 	    $(function(){
-	      $("#header").load("include/header.html"); 
+	      $("#header").load("include/header.php"); 
 	    });
 
 	</script>

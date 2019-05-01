@@ -41,7 +41,48 @@
 					</select>
 				</td>
             </tr>
-            
+            <tr>
+                <td>Athir</td>
+                <td>123243hjkhfk</td>
+                <td align="center">89</td>
+                <td>21/4/2019</td>
+                <td class="status">Processing</td>
+                <td>
+                	<select onchange="changestat('1', this)">
+					  <option value="Processing">Processing</option>
+					  <option value="Success">Success</option>
+					  <option value="Cancel">Cancel</option>
+					</select>
+				</td>
+            </tr>
+            <tr>
+                <td>Dina</td>
+                <td>0987365gajhsdb</td>
+                <td align="center">55</td>
+                <td>22/4/2019</td>
+                <td class="status">Processing</td>
+                <td>
+                	<select onchange="changestat('2', this)">
+					  <option value="Processing">Processing</option>
+					  <option value="Success">Success</option>
+					  <option value="Cancel">Cancel</option>
+					</select>
+				</td>
+            </tr>
+            <tr>
+                <td>Puteri</td>
+                <td>09876asdgaasd</td>
+                <td align="center">15</td>
+                <td>28/4/2019</td>
+                <td class="status">Processing</td>
+                <td>
+                	<select onchange="changestat('3', this)">
+					  <option value="Processing">Processing</option>
+					  <option value="Success">Success</option>
+					  <option value="Cancel">Cancel</option>
+					</select>
+				</td>
+            </tr>
             
         </tbody>
     </table>
@@ -60,11 +101,11 @@
 		}
 
         $(function(){
-          $("#sidebar").load("include/sidebar.html"); 
+          $("#sidebar").load("include/sidebar.php"); 
         });
 
         $(function(){
-          $("#header").load("include/header.html"); 
+          $("#header").load("include/header.php"); 
         });
 	</script>
 

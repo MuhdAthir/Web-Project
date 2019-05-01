@@ -66,11 +66,11 @@
 		}
 
 		$(function(){
-	      $("#sidebar").load("include/sidebar.html"); 
+	      $("#sidebar").load("include/sidebar.php"); 
 	    });
 
 	    $(function(){
-	      $("#header").load("include/header.html"); 
+	      $("#header").load("include/header.php"); 
 	    });
 
 	</script>

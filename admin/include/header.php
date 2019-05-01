@@ -1,7 +1,7 @@
-<!-- <.html
-   include('session.html');
-   include('dbcon.html');
-?> -->
+<?php
+   include('session.php');
+   include('dbcon.php');
+?>
 
 <!DOCTYPE html>
 <html>
@@ -118,15 +118,15 @@
 <body>
 
   <div class="topnav" id="myTopnav">
-    <a class="img" href='dashboard.html'><img src='assets/logo.png' style='width:260px; height: 43px'></a>
+    <a class="img" href='dashboard.php'><img src='assets/logo.png' style='width:260px; height: 43px'></a>
     <div class="dropdown">
-      <button class="dropbtn">Welcome admin 
+      <button class="dropbtn">Welcome <?php echo $login_session; ?> 
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-        <!-- <a href="profile.html"><i class="far fa-edit"></i> Edit Profile</a> -->
-        <a href="changepassword.html"><i class="fas fa-key"></i> Change Password</a>
-        <a href="index.html" onclick="return confirm('Are you sure to logout?');"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <!-- <a href="profile.php"><i class="far fa-edit"></i> Edit Profile</a> -->
+        <a href="changepassword.php"><i class="fas fa-key"></i> Change Password</a>
+        <a href="logout.php" onclick="return confirm('Are you sure to logout?');"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </div>
   </div> 
 
