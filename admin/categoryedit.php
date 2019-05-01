@@ -91,8 +91,8 @@
 
        $result=mysqli_fetch_array($query,MYSQLI_ASSOC);
      ?>
-      <form action="" method="post">
-        Category Name <input type="text" name="catname" value="<?php echo $result["cat_name"];?>" placeholder="Enter Category Name"><br><br>
+      <form action="" method="post" id="catForm">
+        Category Name <input id="category_name" type="text" name="catname" value="<?php echo $result["cat_name"];?>" placeholder="Enter Category Name"><br><br>
         <input type="hidden" name="catid" value="<?php echo $result["cat_id"];?>" placeholder="Enter Category Name">
         <button class="buttonAdd" type="submit" name="submit">Update</button></a>
       </form>
@@ -112,6 +112,14 @@
         $(function(){
           $("#header").load("include/header.php"); 
         });
+
+        $("#catForm").submit(function() {
+
+             if ($("#category_name").val() == "") {
+               alert("Category Name Field is missing");
+               return false;
+            }
+         });
 	</script>
 
 </body>

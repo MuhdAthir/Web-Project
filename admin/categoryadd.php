@@ -73,8 +73,8 @@
     </div>
     <br>
     <div>
-      <form action="" method="post">
-        Category Name <input type="text" name="cat" placeholder="Enter Category Name"><br><br>
+      <form action="" method="post" id="catForm">
+        Category Name <input type="text" name="cat" id="category_name" placeholder="Enter Category Name"><br><br>
         <button type="submit" name="saveCat" class="buttonAdd">Create</button></a>
       </form>
     </div>
@@ -93,6 +93,16 @@
         $(function(){
           $("#header").load("include/header.php"); 
         });
+
+
+         $("#catForm").submit(function() {
+
+             if ($("#category_name").val() == "") {
+               alert("Category Name Field is missing");
+               return false;
+            }
+         });
+
 	</script>
 
 </body>

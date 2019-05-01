@@ -1,3 +1,33 @@
+<?php 
+  
+  include('include/dbcon.php');
+  
+  if(isset($_POST['submit']))
+  {
+    $productname=$_POST['product_name'];
+    $category=$_POST['category'];
+    $productimage=$_FILES["productimage"]["name"];
+    $productprice=$_POST['price'];
+    $productAvailability=$_POST['productAvailability'];
+
+
+    //for getting product id
+    $query=mysqli_query($conn,"select max(product_id) as pid from product");
+    $result=mysqli_fetch_array($query);
+    $productid=$result['pid']+1;
+    $dir="productimages/$productid";
+    mkdir($dir);// directory creation for product images
+    move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/$productid/".$_FILES["productimage"]["name"]);
+
+    $sql=mysqli_query($conn,"insert into product(product_name, product_category, product_image, price, product_status) values('$productname','$category','$productimage','$productprice', '$productAvailability')");
+
+    echo "<script>alert('Product Add!.'); window.location = 'productlist.php';</script>";
+
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,31 +86,41 @@
     </div>
     <br>
     <div>
-      <form action="productlist.php">
+      <form action="" id="productForm" name="insertproduct" method="post" enctype="multipart/form-data">
         <p>
           <label>Product Name</label>
-          <input type="text" name="cat" placeholder="Enter Category Name">
+          <input type="text" name="product_name" placeholder="Enter Category Name">
         </p><br>
         <p>
           <label>Product Category</label>
-          <select>
-            <option value="volvo">Mug</option>
-            <option value="saab">Totebag</option>
+          <select name="category">
+            <option value="">Select Category</option>
+            <?php 
+            include('include/dbcon.php');
+            $query=mysqli_query($conn,"select * from category");
+            while($row=mysqli_fetch_array($query))
+            {?>
+            <option value="<?php echo $row['cat_name'];?>"><?php echo $row['cat_name'];?></option>
+            <?php } ?>
           </select>
         </p><br>
          <p>
           <label>Image</label>
-          <input type="file" name="myFile">
+          <input type="file" name="productimage" id="productimage" value="">
+        </p><br>
+        <p>
+          <label>Product Price</label>
+          RM <input type="text" name="price" placeholder="Enter Category Price">
         </p><br>
         <p>
           <label>Status</label>
-          <select>
-            <option value="volvo">Active</option>
-            <option value="saab">Not Active</option>
+          <select name="productAvailability"  id="productAvailability">
+            <option value="Active">Active</option>
+            <option value="Inactive">Not Active</option>
           </select>
         </p><br>
         
-        <button class="buttonAdd">Insert</button></a>
+        <button type="submit" name="submit" class="buttonAdd">Insert</button></a>
       </form>
     </div>
         
@@ -98,6 +138,14 @@
         $(function(){
           $("#header").load("include/header.php"); 
         });
+
+        $("#productForm").submit(function() {
+
+             if ($("#category_name").val() == "") {
+               alert("Category Name Field is missing");
+               return false;
+            }
+         });
   </script>
 
 </body>

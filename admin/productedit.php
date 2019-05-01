@@ -73,6 +73,10 @@
           <input type="file" name="myFile">
         </p><br>
         <p>
+          <label>Product Price</label>
+          RM <input type="text" name="price" placeholder="Enter Category Price">
+        </p><br>
+        <p>
           <label>Status</label>
           <select>
             <option value="volvo">Active</option>
