@@ -9,11 +9,7 @@
     $query = mysqli_query($conn,$sql);
 
     if($query) {
-      echo "<script type='text/javascript'>";
-      echo 'alert("Record Add")';
-      echo 'window.location.href = "category.php";';
-      echo '</script>';
-
+      echo "<script>alert('Category Add!'); window.location = 'category.php';</script>";
     }
 
   }    

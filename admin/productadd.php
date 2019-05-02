@@ -116,7 +116,7 @@
           <label>Status</label>
           <select name="productAvailability"  id="productAvailability">
             <option value="Active">Active</option>
-            <option value="Inactive">Not Active</option>
+            <option value="Inactive">Inactive</option>
           </select>
         </p><br>
         

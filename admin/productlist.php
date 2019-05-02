@@ -85,9 +85,9 @@
             <td>RM <?php echo $result["price"];?></td>
             <td><?php echo $result["product_status"];?></td>
             <td>
-              <a href="categoryedit.php?cat_id=<?php echo $result["cat_id"];?>"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>
+              <a href="productedit.php?product_id=<?php echo $result["product_id"];?>"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>
 
-              <a href="categorydelete.php?cat_id=<?php echo $result['cat_id'];?>" onClick="return confirm('Are you sure you want to delete?')"><button class="buttonDelete"><i class="fas fa-trash-alt"></i> Delete</button></a
+              <a href="productlist.php?product_id=<?php echo $result['product_id'];?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"><button class="buttonDelete"><i class="fas fa-trash-alt"></i> Delete</button></a
               </td>
             </tr>
           </tbody>
