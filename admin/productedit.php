@@ -119,7 +119,7 @@
           </p><br>
           <p>
             <label>Image</label>
-            <img src="productimages/<?php echo $product_id;?>/<?php echo $result['product_image'];?>" width="50" height="50"> <a href="update-image.php?product_id=<?php echo $result['product_id'];?>">Change Image</a>
+            <img src="productimages/<?php echo $product_id;?>/<?php echo $result['product_image'];?>" width="100" height="100"> <a href="update-image.php?product_id=<?php echo $result['product_id'];?>">Change Image</a>
           </p><br>
           <p>
             <label>Product Price</label>

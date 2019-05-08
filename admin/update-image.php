@@ -1,162 +1,129 @@
+<?php 
 
-<?php
+include('include/dbcon.php');
 
-
-$product_id=$_GET['product_id'];// product id
+$product_id = $_GET['product_id'];
 
 if(isset($_POST['submit']))
 {
-	$productname=$_POST['productName'];
 	$productimage=$_FILES["productimage"]["name"];
-//$dir="productimages";
-//unlink($dir.'/'.$pimage);
 
+	move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/$product_id/".$_FILES["productimage"]["name"]);
+	$sql=mysqli_query($conn,"update  product set product_image='$productimage' where product_id='$product_id' ");
 
-	move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/$productid/".$_FILES["productimage"]["name"]);
-	$sql=mysqli_query($conn,"update product set product_image='$productimage' where product_id='$product_id' ");
-
-	echo "<script>alert('Image Update!.'); window.location = 'productedit.php';</script>";
+	echo "<script>alert('Image Update!'); window.location = 'productlist.php?';</script>";
 
 }
-
 
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin| Update Product Image</title>
-	<link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link type="text/css" href="css/theme.css" rel="stylesheet">
-	<link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
-	<link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
-<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+	<title>Edit Product</title>
+	<link rel="icon" type="image/ico" href="assets/icon.png" />
+	<script type='text/javascript' src='js/jquery-3.3.1.min.js'></script>
+	<style type="text/css">
 
-   <script>
-function getSubcat(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_subcat.php",
-	data:'cat_id='+val,
-	success: function(data){
-		$("#subcategory").html(data);
-	}
-	});
-}
-function selectCountry(val) {
-$("#search-box").val(val);
-$("#suggesstion-box").hide();
-}
-</script>	
+		body{
+			background-color: #f2f2f2;
+		}
 
+		.buttonAdd{
+			background-color: #5cb85c;
+			color: white;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			min-height: 25px;
+			border-radius: 3px;
+		}
 
+		button:hover {
+			opacity: 0.8;
+		}
+
+		form{
+			display: table;
+			background-color: #fff;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+			padding: 20px;
+			width: 40%;
+		}
+
+		input, select, label{
+			/*margin-left: 15px*/
+			display: table-cell;
+		}
+
+		p{
+			display: table-row;
+		}
+
+	</style>
 </head>
 <body>
-<?php include('include/header.php');?>
+	<div id="sidebar"></div>
+	<div id="header"></div>
 
-	<div class="wrapper">
-		<div class="container">
-			<div class="row">
-<?php include('include/sidebar.php');?>				
-			<div class="span9">
-					<div class="content">
+	<div class="content">
+		<h1>Edit Product</h1>
+		<br>
+		<div style="text-align: left;">
+			<a href="productedit.php"><i class="fas fa-arrow-circle-left fa-lg"></i></a> 
+		</div>
+		<br>
+		<div>
 
-						<div class="module">
-							<div class="module-head">
-								<h3>Update Product Image 1</h3>
-							</div>
-							<div class="module-body">
+			<?php  
 
-									<?php if(isset($_POST['submit']))
-{?>
-									<div class="alert alert-success">
-										<button type="button" class="close" data-dismiss="alert">×</button>
-									<strong>Well done!</strong>	<?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?>
-									</div>
-<?php } ?>
+			if(isset($_GET["product_id"]))
+			{
+				$product_id = $_GET["product_id"];
+			}
 
+			$sql = "SELECT * FROM product WHERE product_id = '".$product_id."' ";
 
+			$query = mysqli_query($conn,$sql);
 
-									<br />
+			$result=mysqli_fetch_array($query,MYSQLI_ASSOC);
+			?>
 
-			<form class="form-horizontal row-fluid" name="insertproduct" method="post" enctype="multipart/form-data">
+			<form action="" id="productForm" name="insertproduct" method="post" enctype="multipart/form-data">
+				<p>
+					<label>Product Name</label>
+					<input type="text" name="product_name" placeholder="Enter Category Name" value="<?php echo $result['product_name'];?>">
+				</p><br>
 
-<?php 
-
-$query=mysqli_query($con,"select productName,productImage1 from products where id='$pid'");
-$cnt=1;
-while($row=mysqli_fetch_array($query))
-{
-  
-
-
-?>
-
-
-<div class="control-group">
-<label class="control-label" for="basicinput">Product Name</label>
-<div class="controls">
-<input type="text"    name="productName"  readonly value="<?php echo htmlentities($row['productName']);?>" class="span8 tip" required>
-</div>
-</div>
+				<p>
+					<label>Current Image</label>
+					<img src="productimages/<?php echo $product_id;?>/<?php echo $result['product_image'];?>" width="100" height="100">
+				</p><br>
+				<p>
+					<label>New Image</label>
+					<input type="file" name="productimage" id="productimage" value="">
+				</p><br>
 
 
-<div class="control-group">
-<label class="control-label" for="basicinput">Current Product Image1</label>
-<div class="controls">
-<img src="productimages/<?php echo htmlentities($pid);?>/<?php echo htmlentities($row['productImage1']);?>" width="200" height="100"> 
-</div>
-</div>
+				<button type="submit" name="submit" class="buttonAdd">Update</button></a>
+			</form>
+		</div>
 
 
 
-<div class="control-group">
-<label class="control-label" for="basicinput">New Product Image1</label>
-<div class="controls">
-<input type="file" name="productimage1" id="productimage1" value="" class="span8 tip" required>
-</div>
-</div>
 
+	</div>
 
-<?php } ?>
+	<script type="text/javascript">
 
-	<div class="control-group">
-											<div class="controls">
-												<button type="submit" name="submit" class="btn">Update</button>
-											</div>
-										</div>
-									</form>
-							</div>
-						</div>
+		$(function(){
+			$("#sidebar").load("include/sidebar.php"); 
+		});
 
-
-	
-						
-						
-					</div><!--/.content-->
-				</div><!--/.span9-->
-			</div>
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
-
-<?php include('include/footer.php');?>
-
-	<script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-	<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
-	<script src="scripts/datatables/jquery.dataTables.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('.datatable-1').dataTable();
-			$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-			$('.dataTables_paginate > a').wrapInner('<span />');
-			$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-			$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-		} );
+		$(function(){
+			$("#header").load("include/header.php"); 
+		});
 	</script>
+
 </body>
-<?php } ?>
+</html>
