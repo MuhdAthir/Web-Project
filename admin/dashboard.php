@@ -43,7 +43,21 @@
 		<h1>Dashboard</h1>
 		<div class="grid-container">
 			<div>
-				<p style="padding: 10px">4 New Orders!</p> 
+				<p style="padding: 10px"> 
+				<?php
+				include('include/dbcon.php');
+
+				$f1="00:00:00";
+				$from=date('Y-m-d')." ".$f1;
+				$t1="23:59:59";
+				$to=date('Y-m-d')." ".$t1;
+
+				$status='Delivered';
+
+				$query = mysqli_query($conn,"SELECT COUNT(*) AS r FROM orders WHERE orderDate BETWEEN '$from' and '$to' and orderStatus!='$status'");
+				$query = $query->fetch_assoc();
+				echo $query['r'];
+				?> New Orders!</p> 
 				<hr>
 				<a href="orderlist.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
@@ -58,8 +72,7 @@
 				<p style="padding: 10px"> 
 				<?php
 				include('include/dbcon.php');
-        $sql = "SELECT COUNT(*) AS r FROM product";
-				$query = mysqli_query($conn,$sql);
+        $query = mysqli_query($conn,"SELECT COUNT(*) AS r FROM product");
 				$query = $query->fetch_assoc();
 				echo $query['r'];
 				?> Total  Products!</p> 
