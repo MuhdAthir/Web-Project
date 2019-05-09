@@ -3,6 +3,8 @@
 include('admin/include/dbcon.php');
 include('function.php');
 
+$getproduct = loopTable($conn, "product");
+
 ?>
 <!doctype html>
 <html>
@@ -13,26 +15,40 @@ include('function.php');
 <link rel="stylesheet" href="css/all.css">
 <script src="js/jquery-3.4.0.min.js" type="text/javascript"></script>
 </head>
-<body>
+<body id="home">
+<iframe src="fancy-slider/" height="300px" width="100%" frameborder="0"></iframe>
 <?php include('navbar.php') ?>
-	
-<div class="slideshow-container">
-  <div class="mySlides fade"> 
-	  <img src="img/12871e75003b776d1e8f60623518.jpeg"> 
-	</div>
-  <div class="mySlides fade"> 
-	  <img src="img/375c552ae8ddf39f56fcf177d02b.jpeg"> 
-	</div>
-  <div class="mySlides fade"> 
-	  <img src="img/peacock-birds-and-flowers-japanese-print-art-header.jpg"> 
-	</div>
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next" onclick="plusSlides(1)">&#10095;</a> </div>
-<br>
-<div style="text-align:center"> 
-	<span class="dot" onclick="currentSlide(1)"></span> 
-	<span class="dot" onclick="currentSlide(2)"></span> 
-	<span class="dot" onclick="currentSlide(3)"></span> 
-</div>
+  <div align="center" id="product">
+	<br>
+    <div class="card" style="width: 80%;" align="left">
+      <div class="grid-container">
+		 <?php while($row = $getproduct->fetch_assoc())
+			{ ?>
+		 <div class="grid-item">
+          <div class="row">
+            <div class="col-6"> <img src="admin/productimages/<?php echo $row['product_id'].'/'.$row['product_image'] ?>" class="img-pro card"> </div>
+            <div class="col-6">
+              <table class="table">
+                <tr>
+                  <td colspan="2"><?php echo $row['product_name'] ?></td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>RM <?php echo $row['price'] ?></td>
+                </tr>
+                <tr>
+                  <td>Stock</td>
+                  <td>Pending</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+		 <?php } ?>
+      </div>
+    </div>
+  </div>
+<p style="padding: 300px"></p>
 <script src="js/all.js" type="text/javascript"></script>
 </body>
 </html>
