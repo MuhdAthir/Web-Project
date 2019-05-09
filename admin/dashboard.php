@@ -55,7 +55,14 @@
 			</div>
 
 			<div>
-				<p style="padding: 10px">2 Total  Products!</p> 
+				<p style="padding: 10px"> 
+				<?php
+				include('include/dbcon.php');
+        $sql = "SELECT COUNT(*) AS r FROM product";
+				$query = mysqli_query($conn,$sql);
+				$query = $query->fetch_assoc();
+				echo $query['r'];
+				?> Total  Products!</p> 
 				<hr>
 				<a href="productlist.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
