@@ -29,13 +29,12 @@ if(isset($_POST['login'])){
 	
 }
 ?>
-<div class="topnav" id="myTopnav"> 
-	<a href="index.php" class="title">Crafted by Soul</a> 
-	<a href="#news" onClick="openModal('signin')"><i class="fas fa-sign-in-alt"></i> Sign In</a> 
-	<a href="#" onClick="openModal('signup')"><i class="fas fa-user-plus"></i> Sign Up</a> 
-	<a href="#news"><i class="fas fa-level-up-alt"></i> Best Selling</a> 
-	<a href="product.php"><i class="fas fa-tshirt"></i> Product</a> 
-	<a href="index.php" class="nav-active"><i class="fas fa-home"></i> Home</a> 
+<div class="topnav" id="myTopnav" style="position: sticky; z-index: 1; top: 0"> 
+	<a class="title" href="#home" class="nav-active"><i class="fas fa-home"></i> Home</a>
+	<a class="title" href="#product"><i class="fas fa-tshirt"></i> Product</a> 
+	<a class="title" href="#news"><i class="fas fa-level-up-alt"></i> Best Selling</a> 
+	<a class="title" href="#" onClick="openModal('signup')"><i class="fas fa-user-plus"></i> Sign Up</a> 
+	<a class="title" href="#news" onClick="openModal('signin')"><i class="fas fa-sign-in-alt"></i> Sign In</a> 
 	<a href="javascript:void(0);" class="icon" onclick="myFunction()"> <i class="fa fa-bars"></i> </a> 
 </div>
 <div id="signup" class="modal">
@@ -80,16 +79,18 @@ if(isset($_POST['login'])){
     <div class="modal-header"> <span class="close signin">&times;</span>
       <h2>Sign In</h2>
     </div>
-	 <form method="post">
+	 <form method="post" name="loginform">
     <div class="modal-body">
       		<table width="100%">
 			<tr>
 				<td>Email:	</td>
-				<td><input class="form-input" name="email" type="email" /></td>
+				<td><input class="form-input" name="email" type="email" required onBlur="checkEmaillog(this)"/>
+					<a id="noticelogin" style="display: none; color: red"><em>This email doesn't registered in our database, please sign up</em></a>
+				</td>
 			</tr>		
 			<tr>
 			<td>Password: </td>
-				<td><input class="form-input" type="password" name="pass" /></td>
+				<td><input class="form-input" type="password" name="pass" id="passLog" required disabled/></td>
 			</tr>			 		
 		</table>
     </div>
@@ -100,7 +101,25 @@ if(isset($_POST['login'])){
   </div>
 </div>
 <script>
-	function checkEmail( eml ) {
+	function checkEmaillog( eml ) {
+			$.post( "jquery_post.php", //Required URL of the page on server
+				{ // Data Sending With Request To Server
+					email: eml.value
+				},
+				function ( response ) { // Required Callback Function
+					if(response == "N")
+					{
+						document.loginform.passLog.disabled = false;
+						document.getElementById('noticelogin').style.display = 'none';						
+
+					}else{
+						document.loginform.passLog.disabled = true;
+						document.getElementById('noticelogin').style.display = 'block';
+					}
+				} );
+		}
+	
+		function checkEmail( eml ) {
 			$.post( "jquery_post.php", //Required URL of the page on server
 				{ // Data Sending With Request To Server
 					email: eml.value
