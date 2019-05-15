@@ -87,15 +87,10 @@
     <hr>
     <a href="productlist.php">Product List</a>
   </div>
-    <!-- <a href="#about"><i class="fas fa-bell"></i> Notification</a>
-    <a href="#about"><i class="fas fa-cog"></i> Setting</a> -->
+    
+    <a href="message.php"><i class="fas fa-envelope"></i> Message</a>
     <a href="report.php"><i class="fas fa-chart-line"></i> Report</a>
-    <button class="dropdown-btn"><i class="fas fa-cog"></i> Setting <i class="fas fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <a href="message.php">Message</a>
-    </div>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i></a>
+    
   </div>
 
 

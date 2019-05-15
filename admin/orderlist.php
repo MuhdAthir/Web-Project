@@ -34,7 +34,7 @@
                 <th>Product </th>
                 <th>Qty </th>
                 <th>Amount</th>
-                <th>Order Date</th>
+                <th>Order Date/Time</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -42,7 +42,7 @@
             <?php 
             include('include/dbcon.php');
                $status='Delivered';
-                $query=mysqli_query($conn,"SELECT users.name as username,users.email as useremail,users.contactno as usercontact,users.shippingAddress as shippingaddress,users.shippingCity as shippingcity,users.shippingState as shippingstate,product.product_name as productname,orders.quantity as quantity,orders.orderDate as orderdate,product.price as productprice,orders.id as id  FROM orders JOIN users on  orders.user_id=users.user_id JOIN product on product.product_id=orders.product_id WHERE orders.orderStatus!='$status' or orders.orderStatus is null ");
+                $query=mysqli_query($conn,"SELECT users.name as username,users.email as useremail,users.contactno as usercontact,users.shippingAddress as shippingaddress,users.shippingCity as shippingcity,users.shippingState as shippingstate,product.product_name as productname,orders.quantity as quantity,DATE_FORMAT(orders.orderDate, '%d/%m/%Y %H:%i') as orderdate,product.price as productprice,orders.id as id  FROM orders JOIN users on  orders.user_id=users.user_id JOIN product on product.product_id=orders.product_id WHERE orders.orderStatus!='$status' or orders.orderStatus is null ");
                 $cnt=1;
                 while($row=mysqli_fetch_array($query,MYSQLI_ASSOC))
                 {

@@ -53,22 +53,39 @@
     <h1>Message</h1>
 
     <table border="1" style="width:100%" cellpadding="2">
-      <thead align="left"> 
+      <thead align="left">
+      <col width="15%"> 
+      <col width="15%">
+      <col width="20%"> 
         <tr bgcolor="#cccccc">
-          <th>Id</th>
+          <th>Date/Time</th>
           <th>User</th>
           <th>Contact</th>
           <th>Message</th>
         </tr>
       </thead>
+      <?php 
+      
+        include('include/dbcon.php');
+
+        $sql = "SELECT DATE_FORMAT(date, '%d/%m/%Y %H:%i'), customer, contact, message FROM message";
+
+        $query = mysqli_query($conn,$sql);
+  
+        while($result=mysqli_fetch_array($query,MYSQLI_ASSOC))
+        {
+      ?>
       <tbody>
         <tr>
-          <td>1</td>
-          <td>Syafiq</td>
-          <td>syafiqshuib@gmail.com</td>
-          <td>Why is my item late?</td>
+          <td><?php echo $result["DATE_FORMAT(date, '%d/%m/%Y %H:%i')"];?></td>
+          <td><?php echo $result["customer"];?></td>
+          <td><?php echo $result["contact"];?></td>
+          <td><?php echo $result["message"];?></td>
         </tr>
      </tbody>
+     <?php
+      }
+    ?>
    </table>
 
  </div>

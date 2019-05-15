@@ -62,6 +62,7 @@
           <th>Category</th>
           <th align="center">Image</th>
           <th>Price</th>
+          <th>Stock</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
@@ -83,11 +84,12 @@
             <td><?php echo $result["product_category"];?></td>
             <td align="center"><img src="productimages/<?php echo $result["product_id"];?>/<?php echo $result["product_image"];?>" width="50" height="50"></td>
             <td>RM <?php echo $result["price"];?></td>
+            <td><?php echo $result["price"];?></td>
             <td><?php echo $result["product_status"];?></td>
             <td>
               <a href="productedit.php?product_id=<?php echo $result["product_id"];?>"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>
 
-              <a href="productlist.php?product_id=<?php echo $result['product_id'];?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"><button class="buttonDelete"><i class="fas fa-trash-alt"></i> Delete</button></a
+              <a href="productdelete.php?product_id=<?php echo $result['product_id'];?>" onClick="return confirm('Are you sure you want to delete?')"><button class="buttonDelete"><i class="fas fa-trash-alt"></i> Delete</button></a
               </td>
             </tr>
           </tbody>

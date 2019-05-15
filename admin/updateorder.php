@@ -66,7 +66,7 @@
   <div id="header"></div>
 
   <div class="content">
-    <h1>Edit Product</h1>
+    <h1>Update Order</h1>
     <br>
     <div style="text-align: left;">
       <a href="orderlist.php"><i class="fas fa-arrow-circle-left fa-lg"></i></a> 
@@ -81,7 +81,7 @@
          $order_id = $_GET["id"];
        }
 
-       $sql = "SELECT * FROM orders WHERE id = '".$order_id."' ";
+       $sql = "SELECT id,DATE_FORMAT(orderDate, '%d/%m/%Y %H:%i') FROM orders WHERE id = '".$order_id."' ";
 
        $query = mysqli_query($conn,$sql);
 
@@ -95,7 +95,7 @@
         </p><br>
         <p>
           <label>Order Date</label>
-          <input type="text" disabled name="order_date" placeholder="Enter Category Name" value="<?php echo $result['orderDate'];?>">
+          <input type="text" disabled name="order_date" placeholder="Enter Category Name" value="<?php echo $result["DATE_FORMAT(orderDate, '%d/%m/%Y %H:%i')"];?>">
           </p><br>
           <p>
             <label>Status</label>

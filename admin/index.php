@@ -143,11 +143,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
    $("#loginForm").submit(function() {
 
      if ($("#username").val() == "") {
-       alert("Username Field is missing");
+       alert("Username Field is empty");
        return false;
     }
     if ($("#password").val() == "") {
-       alert("Password Field is missing");
+       alert("Password Field is empty");
        return false;
     }
  });

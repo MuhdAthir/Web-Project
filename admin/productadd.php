@@ -21,7 +21,7 @@
 
     $sql=mysqli_query($conn,"insert into product(product_name, product_category, product_image, price, product_status) values('$productname','$category','$productimage','$productprice', '$productAvailability')");
 
-    echo "<script>alert('Product Add!.'); window.location = 'productlist.php';</script>";
+    echo "<script>alert('Product Add!'); window.location = 'productlist.php';</script>";
 
   }
 
@@ -110,7 +110,11 @@
         </p><br>
         <p>
           <label>Product Price</label>
-          RM <input type="text" name="price" placeholder="Enter Category Price">
+          RM <input type="number" name="price" placeholder="Enter Category Price">
+        </p><br>
+        <p>
+          <label>Stock</label>
+          <input type="text" name="stock" placeholder="Enter Stock">
         </p><br>
         <p>
           <label>Status</label>
