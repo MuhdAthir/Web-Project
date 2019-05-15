@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2019 at 06:06 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: May 15, 2019 at 08:03 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,6 +44,40 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `order_id` int(255) NOT NULL,
+  `product_id` int(255) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `qty` int(255) NOT NULL,
+  `status` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`order_id`, `product_id`, `user_id`, `qty`, `status`) VALUES
+(1, 2, 4, 1, 1),
+(2, 1, 4, 4, 1),
+(3, 1, 4, 6, 1),
+(4, 1, 4, 4, 1),
+(5, 1, 4, 1, 1),
+(6, 1, 4, 1, 1),
+(7, 1, 4, 1, 1),
+(8, 3, 4, 1, 1),
+(9, 3, 4, 1, 1),
+(10, 3, 4, 1, 1),
+(11, 3, 4, 1, 1),
+(12, 3, 4, 1, 1),
+(13, 3, 4, 1, 1),
+(14, 3, 4, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
@@ -61,6 +95,20 @@ INSERT INTO `category` (`cat_id`, `cat_name`) VALUES
 (4, 'Totebag'),
 (7, 'Bunting'),
 (8, 'Doodle');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `order_id` int(255) NOT NULL,
+  `product_id` int(255) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `qty` int(255) NOT NULL,
+  `status` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -113,6 +161,24 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_category`, `produc
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `turn`
+--
+
+CREATE TABLE `turn` (
+  `turn_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `turn`
+--
+
+INSERT INTO `turn` (`turn_id`, `order_id`) VALUES
+(1, 14);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -138,7 +204,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `contactno`, `password`, `shippingAddress`, `shippingCity`, `shippingState`, `billingAddress`, `billingCity`, `billingState`, `regDate`) VALUES
 (1, 'Shaik', 'shaik@gmail.com', 9009857868, 'abc', 'Tasik Biru', 'Sg Buloh', 'Selangor', 'Tasik Biru', 'Sg Buloh', 'Selangor', '2017-02-04 19:30:50'),
 (2, 'Amir', 'amir@gmail.com', 8285703355, 'cba', 'Kg Kota', 'Pasir Gudang', 'Johor', 'Kg Kota', 'Pasir Gudang', 'Johor', '2017-03-15 17:21:22'),
-(3, 'Syukor', 'syukor@gmail.com', 1121312312, 'bca', 'Kg Bersih', 'Tanjong Malim', 'Perak', 'Kg Bersih', 'Tanjong Malim', 'Perak', '2018-04-29 09:30:32');
+(3, 'Syukor', 'syukor@gmail.com', 1121312312, 'bca', 'Kg Bersih', 'Tanjong Malim', 'Perak', 'Kg Bersih', 'Tanjong Malim', 'Perak', '2018-04-29 09:30:32'),
+(4, 'Athir', 'athir@gmail.com', NULL, 'abc', NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-09 02:14:34');
 
 --
 -- Indexes for dumped tables
@@ -151,10 +218,22 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`order_id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `orders`
@@ -167,6 +246,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `turn`
+--
+ALTER TABLE `turn`
+  ADD PRIMARY KEY (`turn_id`);
 
 --
 -- Indexes for table `users`
@@ -203,10 +288,16 @@ ALTER TABLE `product`
   MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `turn`
+--
+ALTER TABLE `turn`
+  MODIFY `turn_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
