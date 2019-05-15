@@ -1,4 +1,4 @@
-<?php
+ <?php
    include('include/session.php');
 ?>
 
@@ -21,6 +21,12 @@
 		  grid-gap: 30px;
 		}
 
+		.grid-container2 {
+		  display: grid;
+		  grid-template-columns: 100%;
+		  grid-gap: 30px;
+		}
+
 		.grid-container > div {
 		  font-size: 15px;
 		  background-color: #fff;
@@ -31,7 +37,6 @@
 			box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
 			margin: 0;
   			height: 300px; 
-  			width: 100%
 		}
 		
 	 </style>
@@ -59,7 +64,7 @@
 				echo $query['r'];
 				?> New Orders!</p> 
 				<hr>
-				<a href="orderlist.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
+				<a href="orderlisttoday.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
 
 			<div>
@@ -81,19 +86,75 @@
 			</div>
 
 			<div>
-				<p style="padding: 10px">1 Message!</p> 
+				<p style="padding: 10px"> 
+				<?php
+				include('include/dbcon.php');
+
+				$f1="00:00:00";
+				$from=date('Y-m-d')." ".$f1;
+				$t1="23:59:59";
+				$to=date('Y-m-d')." ".$t1;
+
+				$status='Delivered';
+
+				$query = mysqli_query($conn,"SELECT COUNT(*) AS r FROM message WHERE date BETWEEN '$from' and '$to'");
+				$query = $query->fetch_assoc();
+				echo $query['r'];
+				?>
+				New Message!</p> 
 				<hr>
 				<a href="message.php"><p style="padding-left: 10px; padding-right: 10px">View Detail <span style="float: right;"><i class="fas fa-angle-right"></i></span> </p></a>
 			</div>
-
-			
 		</div>
 		<br><br>
+
+		<!-- <div style="width: 50%">
+			<div style="width: 50%">
+			<div id="chartContainer" class="linechart"></div>
+		</div> -->
+		</div>
+
+		
+		
+		
+
+		
 
 	</div>
 
 	<script type="text/javascript">
-		
+		window.onload = function () {
+
+		var chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled: true,
+			theme: "light2",
+			title:{
+				text: "Total Customer"
+			},
+			axisY:{
+				includeZero: false
+			},
+			data: [{        
+				type: "line",       
+				dataPoints: [
+					{ y: 15 },
+					{ y: 20 },
+					{ y: 10 },
+					{ y: 34 , indexLabel: "highest",markerColor: "red", markerType: "triangle" },
+					{ y: 12 },
+					{ y: 15 },
+					{ y: 17 },
+					{ y: 20 },
+					{ y: 21 },
+					{ y: 6 , indexLabel: "lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
+					{ y: 10 },
+					{ y: 20 }
+				]
+			}]
+		});
+		chart.render();
+
+		}
 
 		$(function(){
 	      $("#sidebar").load("include/sidebar.php"); 

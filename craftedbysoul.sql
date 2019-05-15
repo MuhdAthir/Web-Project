@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2019 at 06:06 PM
+-- Generation Time: May 09, 2019 at 04:07 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -73,7 +73,7 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `product_id` int(255) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `orderDate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `orderDate` datetime DEFAULT NULL,
   `paymentMethod` varchar(50) NOT NULL,
   `orderStatus` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -83,7 +83,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `product_id`, `quantity`, `orderDate`, `paymentMethod`, `orderStatus`) VALUES
-(1, 1, 1, 2, '2019-05-08 23:13:33', 'COD', 'Delivered'),
+(1, 1, 1, 2, '2019-05-09 23:13:33', 'COD', 'In Progress'),
 (2, 3, 2, 2, '2019-05-09 00:01:01', 'COD', 'Delivered');
 
 -- --------------------------------------------------------

@@ -6,15 +6,11 @@
 
   if(isset($_POST['submit']))
   {
-    
-    // $productname=$_POST['product_name'];
-    // $category=$_POST['category'];
-    // $productprice=$_POST['price'];
-    // $productAvailability=$_POST['productAvailability'];
+  
     
     $sql=mysqli_query($conn,"update  product set product_name='".$_POST["product_name"]."' ,product_category='".$_POST["category"]."' ,price='".$_POST["price"]."' ,product_status='".$_POST["productAvailability"]."'  where product_id='$product_id' ");
 
-    echo "<script>alert('Product Update!.'); window.location = 'productlist.php';</script>";
+    echo "<script>alert('Product Update!'); window.location = 'productlist.php';</script>";
 
   }
 
