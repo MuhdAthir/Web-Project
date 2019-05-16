@@ -1,6 +1,7 @@
 <?php 
 
   include('include/dbcon.php');
+  include('include/session.php');
 
   $order_id = $_GET['id'];
 

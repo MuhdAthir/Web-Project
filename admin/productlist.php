@@ -1,3 +1,7 @@
+<?php
+    include('include/session.php');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,9 +86,9 @@
           <tr>
             <td><?php echo $result["product_name"];?></td>
             <td><?php echo $result["product_category"];?></td>
-            <td align="center"><img src="productimages/<?php echo $result["product_id"];?>/<?php echo $result["product_image"];?>" width="50" height="50"></td>
+            <td align="center"><img src="productimages/<?php echo $result["product_image"];?>" width="50" height="50"></td>
             <td>RM <?php echo $result["price"];?></td>
-            <td><?php echo $result["price"];?></td>
+            <td><?php echo $result["stock"];?></td>
             <td><?php echo $result["product_status"];?></td>
             <td>
               <a href="productedit.php?product_id=<?php echo $result["product_id"];?>"><button class="buttonEdit"><i class="far fa-edit"></i> Edit</button></a>

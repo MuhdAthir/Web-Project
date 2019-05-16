@@ -24,7 +24,7 @@ $getproduct = loopTable($conn, "product");
 			{ ?>
 		 <div class="grid-item">
           <div class="row">
-            <div class="col-6"> <img src="admin/productimages/<?php echo $row['product_id'].'/'.$row['product_image'] ?>" class="img-pro card"> </div>
+            <div class="col-6"> <img src="admin/productimages/<?php echo $row['product_image'] ?>" class="img-pro card"> </div>
             <div class="col-6">
               <table class="table">
                 <tr>

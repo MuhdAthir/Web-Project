@@ -1,6 +1,7 @@
 <?php 
 
 include('include/dbcon.php');
+include('include/session.php');
 
 $product_id = $_GET['product_id'];
 

@@ -120,7 +120,7 @@
   <div class="topnav" id="myTopnav">
     <a class="img" href='dashboard.php'><img src='assets/logo.png' style='width:260px; height: 43px'></a>
     <div class="dropdown">
-      <button class="dropbtn">Welcome <?php echo $login_session; ?> 
+      <button class="dropbtn">Welcome <?php echo $_SESSION['username'] ?> 
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">

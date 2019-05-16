@@ -1,7 +1,8 @@
 <?php 
   
   include('include/dbcon.php');
-
+  include('include/session.php');
+ 
   if(isset($_POST['submit']))
   {
     $cat_id=$_GET['cat_id'];

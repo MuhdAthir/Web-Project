@@ -1,6 +1,7 @@
 <?php 
   
   include('include/dbcon.php');
+  include('include/session.php');
   
   if(isset($_POST['submit']))
   {
@@ -8,22 +9,36 @@
     $category=$_POST['category'];
     $productimage=$_FILES["productimage"]["name"];
     $productprice=$_POST['price'];
+    $productstock=$_POST['stock'];
     $productAvailability=$_POST['productAvailability'];
 
+    $target = "productimages/".basename($productimage);
+    
+    if (file_exists($target)){
+      echo "<script>alert('Duplicate Image!'); window.location = 'productlist.php';</script>";
+    }else{
+      $sql=mysqli_query($conn,"insert into product(product_name, product_category, product_image, price, stock, product_status) values('$productname','$category','$productimage','$productprice','$productstock','$productAvailability')");
+    
 
-    //for getting product id
-    $query=mysqli_query($conn,"select max(product_id) as pid from product");
-    $result=mysqli_fetch_array($query);
-    $productid=$result['pid']+1;
-    $dir="productimages/$productid";
-    mkdir($dir);// directory creation for product images
-    move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/$productid/".$_FILES["productimage"]["name"]);
+      if(move_uploaded_file($_FILES['productimage']['tmp_name'],$target)){
+         echo "<script>alert('Product Add!'); window.location = 'productlist.php';</script>";
+      }else{
+         echo "<script>alert('Failed Add!'); window.location = 'productlist.php';</script>";
+      }
+      
+    }
 
-    $sql=mysqli_query($conn,"insert into product(product_name, product_category, product_image, price, product_status) values('$productname','$category','$productimage','$productprice', '$productAvailability')");
+    
 
-    echo "<script>alert('Product Add!'); window.location = 'productlist.php';</script>";
 
+    // move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/$productid/".$_FILES["productimage"]["name"]);
+    
+    // echo "<script>alert('Product Add!'); window.location = 'productlist.php';</script>";
+
+  
   }
+
+
 
 ?>
 
@@ -114,7 +129,7 @@
         </p><br>
         <p>
           <label>Stock</label>
-          <input type="text" name="stock" placeholder="Enter Stock">
+          <input type="number" name="stock" placeholder="Enter Stock">
         </p><br>
         <p>
           <label>Status</label>

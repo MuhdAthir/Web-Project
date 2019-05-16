@@ -3,20 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: May 15, 2019 at 08:03 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
-=======
--- Generation Time: May 09, 2019 at 04:07 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
->>>>>>> 8a1e92707c205fd9cf712424a2c9f50113a16e8d
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+08:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;

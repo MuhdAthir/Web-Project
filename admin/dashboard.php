@@ -1,5 +1,6 @@
  <?php
-   include('include/session.php');
+	 include('include/session.php');
+	 date_default_timezone_set('Asia/Kuala_Lumpur');
 ?>
 
 <!DOCTYPE html>
@@ -88,14 +89,13 @@
 			<div>
 				<p style="padding: 10px"> 
 				<?php
+				
 				include('include/dbcon.php');
 
 				$f1="00:00:00";
 				$from=date('Y-m-d')." ".$f1;
 				$t1="23:59:59";
 				$to=date('Y-m-d')." ".$t1;
-
-				$status='Delivered';
 
 				$query = mysqli_query($conn,"SELECT COUNT(*) AS r FROM message WHERE date BETWEEN '$from' and '$to'");
 				$query = $query->fetch_assoc();

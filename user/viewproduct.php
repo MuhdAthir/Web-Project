@@ -29,7 +29,7 @@ $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
 				<div class="card-body">
 					<div class="grid-container">
 						<div class="grid-item">
-							<img src="../admin/productimages/<?php echo $pro['product_id'].'/'.$pro['product_image'] ?>" alt="" class="img-pro card" style="height: 400px">
+							<img src="../admin/productimages/<?php echo $pro['product_image'] ?>" alt="" class="img-pro card" style="height: 400px">
 						</div>
 						<div class="grid-item" style="padding: 30px">
 							<table class="table">

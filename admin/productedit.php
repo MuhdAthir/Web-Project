@@ -1,6 +1,7 @@
 <?php 
 
   include('include/dbcon.php');
+  include('include/session.php');
 
   $product_id = $_GET['product_id'];
 
@@ -8,7 +9,7 @@
   {
   
     
-    $sql=mysqli_query($conn,"update  product set product_name='".$_POST["product_name"]."' ,product_category='".$_POST["category"]."' ,price='".$_POST["price"]."' ,product_status='".$_POST["productAvailability"]."'  where product_id='$product_id' ");
+    $sql=mysqli_query($conn,"update  product set product_name='".$_POST["product_name"]."' ,product_category='".$_POST["category"]."' ,price='".$_POST["price"]."', stock='".$_POST["stock"]."' ,product_status='".$_POST["productAvailability"]."'  where product_id='$product_id' ");
 
     echo "<script>alert('Product Update!'); window.location = 'productlist.php';</script>";
 
@@ -119,7 +120,11 @@
           </p><br>
           <p>
             <label>Product Price</label>
-            RM <input type="text" name="price" placeholder="Enter Category Price" value="<?php echo $result['price'];?>">
+            RM <input type="number" name="price" placeholder="Enter Product Price" value="<?php echo $result['price'];?>">
+          </p><br>
+          <p>
+            <label>Product Stock</label>
+            <input type="number" name="stock" placeholder="Enter Product Stock" value="<?php echo $result['stock'];?>">
           </p><br>
           <p>
             <label>Status</label>

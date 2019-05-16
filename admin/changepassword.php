@@ -5,11 +5,11 @@
 
   if(isset($_POST['submit']))
   {
-  $sql=mysqli_query($conn,"SELECT password FROM admin where password='".$_POST['pass']."' && username='".$_SESSION['login_user']."'");
+  $sql=mysqli_query($conn,"SELECT password FROM admin where password='".$_POST['pass']."' && username='".$_SESSION['username']."'");
   $num=mysqli_fetch_array($sql);
   if($num>0)
   {
-   $con=mysqli_query($conn,"UPDATE admin SET password='".$_POST['newPass']."' WHERE username='".$_SESSION['login_user']."'");
+   $con=mysqli_query($conn,"UPDATE admin SET password='".$_POST['newPass']."' WHERE username='".$_SESSION['username']."'");
   echo "<script>alert('Password Updated!'); window.location = 'dashboard.php';</script>";
   }
   else
