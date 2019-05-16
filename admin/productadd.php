@@ -28,18 +28,7 @@
       
     }
 
-    
-
-
-    // move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/$productid/".$_FILES["productimage"]["name"]);
-    
-    // echo "<script>alert('Product Add!'); window.location = 'productlist.php';</script>";
-
-  
   }
-
-
-
 ?>
 
 
@@ -104,12 +93,12 @@
       <form action="" id="productForm" name="insertproduct" method="post" enctype="multipart/form-data">
         <p>
           <label>Product Name</label>
-          <input type="text" name="product_name" placeholder="Enter Category Name">
+          <input type="text" id="productName" name="product_name" placeholder="Enter Category Name">
         </p><br>
         <p>
           <label>Product Category</label>
           <select name="category">
-            <option value="">Select Category</option>
+            <!-- <option value="">Select Category</option> -->
             <?php 
             include('include/dbcon.php');
             $query=mysqli_query($conn,"select * from category");
@@ -121,15 +110,15 @@
         </p><br>
          <p>
           <label>Image</label>
-          <input type="file" name="productimage" id="productimage" value="">
+          <input type="file" name="productimage" id="productImage" value="" accept="png,jpeg,jpg">
         </p><br>
         <p>
           <label>Product Price</label>
-          RM <input type="number" name="price" placeholder="Enter Category Price">
+          RM <input type="number" id="productPrice" name="price" placeholder="Enter Category Price">
         </p><br>
         <p>
           <label>Stock</label>
-          <input type="number" name="stock" placeholder="Enter Stock">
+          <input type="number" id="productStock" name="stock" placeholder="Enter Stock">
         </p><br>
         <p>
           <label>Status</label>
@@ -160,10 +149,24 @@
 
         $("#productForm").submit(function() {
 
-             if ($("#category_name").val() == "") {
-               alert("Category Name Field is missing");
+             if ($("#productName").val() == "") {
+               alert("Product Name is missing");
                return false;
             }
+            if ($("#productPrice").val() == "") {
+               alert("Product Price Field is missing");
+               return false;
+            }
+            if ($("#productStock").val() == "") {
+               alert("Product Stock Field is missing");
+               return false;
+            }
+            if ($("#productImage").val() == "") {
+               alert("Product Image Field is missing");
+               return false;
+            }
+            
+
          });
   </script>
 

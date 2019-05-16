@@ -93,7 +93,7 @@
       <form action="" id="productForm" name="insertproduct" method="post" enctype="multipart/form-data">
         <p>
           <label>Product Name</label>
-          <input type="text" name="product_name" placeholder="Enter Category Name" value="<?php echo $result['product_name'];?>">
+          <input type="text" name="product_name" id="productName" placeholder="Enter Category Name" value="<?php echo $result['product_name'];?>">
         </p><br>
         <p>
           <label>Product Category</label>
@@ -116,15 +116,15 @@
           </p><br>
           <p>
             <label>Image</label>
-            <img src="productimages/<?php echo $product_id;?>/<?php echo $result['product_image'];?>" width="100" height="100"> <a href="update-image.php?product_id=<?php echo $result['product_id'];?>">Change Image</a>
+            <img src="productimages/<?php echo $result['product_image'];?>" width="100" height="100"> <a href="update-image.php?product_id=<?php echo $result['product_id'];?>">Change Image</a>
           </p><br>
           <p>
             <label>Product Price</label>
-            RM <input type="number" name="price" placeholder="Enter Product Price" value="<?php echo $result['price'];?>">
+            RM <input type="number" name="price" id="productPrice" placeholder="Enter Product Price" value="<?php echo $result['price'];?>">
           </p><br>
           <p>
             <label>Product Stock</label>
-            <input type="number" name="stock" placeholder="Enter Product Stock" value="<?php echo $result['stock'];?>">
+            <input type="number" name="stock" id="productStock" placeholder="Enter Product Stock" value="<?php echo $result['stock'];?>">
           </p><br>
           <p>
             <label>Status</label>
@@ -153,6 +153,29 @@
       $(function(){
         $("#header").load("include/header.php"); 
       });
+
+      $("#productForm").submit(function() {
+
+             if ($("#productName").val() == "") {
+               alert("Product Name is missing");
+               return false;
+            }
+            if ($("#productPrice").val() == "") {
+               alert("Product Price Field is missing");
+               return false;
+            }
+            if ($("#productStock").val() == "") {
+               alert("Product Stock Field is missing");
+               return false;
+            }
+            if ($("#productImage").val() == "") {
+               alert("Product Image Field is missing");
+               return false;
+            }
+            
+
+         });
+
     </script>
 
   </body>

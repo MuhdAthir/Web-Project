@@ -7,9 +7,14 @@ $product_id = $_GET['product_id'];
 
 if(isset($_POST['submit']))
 {
+	$res=mysqli_query($conn,"SELECT * FROM product WHERE product_id='".$product_id."'");
+  	$row=mysqli_fetch_array($res);
+  	$image=$row['product_image'];
+  	unlink("productimages/".$image);
+
 	$productimage=$_FILES["productimage"]["name"];
 
-	move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/$product_id/".$_FILES["productimage"]["name"]);
+	move_uploaded_file($_FILES["productimage"]["tmp_name"],"productimages/".$_FILES["productimage"]["name"]);
 	$sql=mysqli_query($conn,"update  product set product_image='$productimage' where product_id='$product_id' ");
 
 	echo "<script>alert('Image Update!'); window.location = 'productlist.php?';</script>";
@@ -71,7 +76,7 @@ if(isset($_POST['submit']))
 		<h1>Edit Product</h1>
 		<br>
 		<div style="text-align: left;">
-			<a href="productedit.php"><i class="fas fa-arrow-circle-left fa-lg"></i></a> 
+			<a href="productlist.php"><i class="fas fa-arrow-circle-left fa-lg"></i></a> 
 		</div>
 		<br>
 		<div>
@@ -91,14 +96,10 @@ if(isset($_POST['submit']))
 			?>
 
 			<form action="" id="productForm" name="insertproduct" method="post" enctype="multipart/form-data">
-				<p>
-					<label>Product Name</label>
-					<input type="text" name="product_name" placeholder="Enter Category Name" value="<?php echo $result['product_name'];?>">
-				</p><br>
-
+				
 				<p>
 					<label>Current Image</label>
-					<img src="productimages/<?php echo $product_id;?>/<?php echo $result['product_image'];?>" width="100" height="100">
+					<img src="productimages/<?php echo $result['product_image'];?>" width="100" height="100">
 				</p><br>
 				<p>
 					<label>New Image</label>
