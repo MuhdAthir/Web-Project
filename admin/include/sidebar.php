@@ -80,6 +80,8 @@
       <a href="orderlisttoday.php">Today's Orders</a>
       <hr>
       <a href="orderlist.php">Pending Orders</a>
+      <hr>
+      <a href="deliveredorder.php">Delivered Orders</a>
     </div>
     <button class="dropdown-btn"><i class="fas fa-box"></i> Product <i class="fas fa-caret-down"></i></button>
     <div class="dropdown-container">

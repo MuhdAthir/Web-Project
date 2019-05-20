@@ -35,30 +35,40 @@
           margin: 8px 0;
           border: none;
           cursor: pointer;
+          width: 30%;
           min-height: 25px;
           border-radius: 3px;
+          font-size: 15px
        }
 
-    button:hover {
-      opacity: 0.8;
-    }
+       button:hover {
+          opacity: 0.8;
+       }
 
-    form{
-      display: table;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
-      padding: 20px;
-      width: 40%;
-    }
+       form{
+        display: table;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+        padding: 20px;
+        width: 50%;
+       }
 
-    input, select, label{
-      /*margin-left: 15px*/
-      display: table-cell;
-    }
+       input, select, label, button{
+        display: table-cell;
+       }
 
-    p{
-      display: table-row;
-    }
+       p{
+        display: table-row;
+       }
+
+       input {
+         width: 100%;
+         padding: 12px 20px;
+         margin: 4px 0;
+         display: inline-block;
+         border: 1px solid #ccc;
+         box-sizing: border-box;
+       }
 
   </style>
 </head>
@@ -106,8 +116,11 @@
               <option value="In Progress">In Progress</option>
             </select>
           </p><br>
-
-          <button type="submit" name="submit" class="buttonAdd">Update</button></a>
+          <p>
+            <label></label>
+            <button style="float: right" type="submit" name="submit" class="buttonAdd">Update</button>
+          </p>
+          
         </form>
       </div>
 

@@ -34,9 +34,10 @@
           margin: 8px 0;
           border: none;
           cursor: pointer;
-          width: 15%;
+          width: 30%;
           min-height: 25px;
           border-radius: 3px;
+          font-size: 15px
        }
 
        button:hover {
@@ -44,16 +45,28 @@
        }
 
        form{
-        /*border-style: solid;
-        border-width: 1px;*/
+        display: table;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
         padding: 20px;
-        width: 40%;
+        width: 50%;
        }
 
-       input{
-        margin-left: 15px
+       input, select, label, button{
+        display: table-cell;
+       }
+
+       p{
+        display: table-row;
+       }
+
+       input {
+         width: 100%;
+         padding: 12px 20px;
+         margin: 4px 0;
+         display: inline-block;
+         border: 1px solid #ccc;
+         box-sizing: border-box;
        }
 
 	 </style>
@@ -71,8 +84,15 @@
     <br>
     <div>
       <form action="" method="post" id="catForm">
-        Category Name <input type="text" name="cat" id="category_name" placeholder="Enter Category Name"><br><br>
-        <button type="submit" name="saveCat" class="buttonAdd">Create</button></a>
+        <p>
+          <label>Category Name</label>
+          <input type="text" name="cat" id="category_name" placeholder="Enter Category Name"><br><br>
+        </p>
+         <p>
+           <label></label>
+           <button style="float: right" type="submit" name="saveCat" class="buttonAdd">Create</button></a>
+         </p>
+        
       </form>
     </div>
         
