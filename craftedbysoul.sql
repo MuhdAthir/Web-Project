@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2019 at 06:22 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: May 20, 2019 at 08:27 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -60,21 +60,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`order_id`, `product_id`, `user_id`, `qty`, `status`) VALUES
-(1, 2, 4, 1, 1),
-(2, 1, 4, 4, 1),
-(3, 1, 4, 6, 1),
-(4, 1, 4, 4, 1),
-(5, 1, 4, 1, 1),
-(6, 1, 4, 1, 1),
-(7, 1, 4, 1, 1),
-(8, 3, 4, 1, 1),
-(9, 3, 4, 1, 1),
-(10, 3, 4, 1, 1),
-(11, 3, 4, 1, 1),
-(12, 3, 4, 1, 1),
-(13, 3, 4, 1, 1),
-(14, 3, 4, 1, 1),
-(15, 1, 1, 1, 1);
+(15, 1, 1, 1, 1),
+(19, 1, 4, 3, 1),
+(21, 3, 4, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -167,7 +155,7 @@ CREATE TABLE `product` (
   `product_name` varchar(100) NOT NULL,
   `product_category` varchar(100) NOT NULL,
   `product_image` varchar(100) NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` decimal(50,2) NOT NULL,
   `stock` int(11) NOT NULL,
   `product_status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -177,9 +165,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_category`, `product_image`, `price`, `stock`, `product_status`) VALUES
-(1, 'Cawan Hitam', 'Mug', 'mug.png', 20, 4, 'Active'),
-(2, 'Bag Pink', 'Totebag', 'totebag.png', 30, 10, 'Active'),
-(3, 'Test', 'Bunting', 'ball.png', 22, 15, 'Active');
+(1, 'Cawan Hitam', 'Mug', 'mug.png', '21.00', 4, 'Active'),
+(2, 'Bag Pink', 'Totebag', 'totebag.png', '30.20', 10, 'Active'),
+(3, 'Test', 'Bunting', 'ball.png', '22.00', 15, 'Active');
 
 -- --------------------------------------------------------
 
@@ -197,7 +185,7 @@ CREATE TABLE `turn` (
 --
 
 INSERT INTO `turn` (`turn_id`, `order_id`) VALUES
-(1, 15);
+(1, 21);
 
 -- --------------------------------------------------------
 
@@ -208,14 +196,17 @@ INSERT INTO `turn` (`turn_id`, `order_id`) VALUES
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `billingName` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `contactno` bigint(11) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `shippingAddress` longtext,
   `shippingCity` varchar(255) DEFAULT NULL,
+  `shippingPostcode` int(6) DEFAULT NULL,
   `shippingState` varchar(255) DEFAULT NULL,
   `billingAddress` longtext,
   `billingCity` varchar(255) DEFAULT NULL,
+  `billingPostcode` int(6) DEFAULT NULL,
   `billingState` varchar(255) DEFAULT NULL,
   `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -224,11 +215,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `email`, `contactno`, `password`, `shippingAddress`, `shippingCity`, `shippingState`, `billingAddress`, `billingCity`, `billingState`, `regDate`) VALUES
-(1, 'Shaik', 'shaik@gmail.com', 9009857868, 'abc', 'Tasik Biru', 'Sg Buloh', 'Selangor', 'Tasik Biru', 'Sg Buloh', 'Selangor', '2017-02-04 11:30:50'),
-(2, 'Amir', 'amir@gmail.com', 8285703355, 'cba', 'Kg Kota', 'Pasir Gudang', 'Johor', 'Kg Kota', 'Pasir Gudang', 'Johor', '2017-03-15 09:21:22'),
-(3, 'Syukor', 'syukor@gmail.com', 1121312312, 'bca', 'Kg Bersih', 'Tanjong Malim', 'Perak', 'Kg Bersih', 'Tanjong Malim', 'Perak', '2018-04-29 01:30:32'),
-(4, 'Athir', 'athir@gmail.com', NULL, 'abc', NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-08 18:14:34');
+INSERT INTO `users` (`user_id`, `name`, `billingName`, `email`, `contactno`, `password`, `shippingAddress`, `shippingCity`, `shippingPostcode`, `shippingState`, `billingAddress`, `billingCity`, `billingPostcode`, `billingState`, `regDate`) VALUES
+(1, 'Shaik', NULL, 'shaik@gmail.com', 9009857868, 'abc', 'Tasik Biru', 'Sg Buloh', NULL, 'Selangor', 'Tasik Biru', 'Sg Buloh', NULL, 'Selangor', '2017-02-04 11:30:50'),
+(2, 'Amir', NULL, 'amir@gmail.com', 8285703355, 'cba', 'Kg Kota', 'Pasir Gudang', NULL, 'Johor', 'Kg Kota', 'Pasir Gudang', NULL, 'Johor', '2017-03-15 09:21:22'),
+(3, 'Syukor', NULL, 'syukor@gmail.com', 1121312312, 'bca', 'Kg Bersih', 'Tanjong Malim', NULL, 'Perak', 'Kg Bersih', 'Tanjong Malim', NULL, 'Perak', '2018-04-29 01:30:32'),
+(4, 'Athir', NULL, 'athir@gmail.com', NULL, 'abc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-08 18:14:34');
 
 --
 -- Indexes for dumped tables
@@ -320,7 +311,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `turn`

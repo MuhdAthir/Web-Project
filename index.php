@@ -3,7 +3,7 @@
 include('admin/include/dbcon.php');
 include('function.php');
 
-$getproduct = loopTable($conn, "product");
+$getproduct = loopSQL($conn, "SELECT * FROM cart c, product p WHERE  c.status = 2  AND p.product_id = c.product_id GROUP BY c.product_id ORDER BY c.qty DESC");
 
 ?>
 <!doctype html>
@@ -48,7 +48,6 @@ $getproduct = loopTable($conn, "product");
       </div>
     </div>
   </div>
-<p style="padding: 300px"></p>
 <script src="js/all.js" type="text/javascript"></script>
 </body>
 </html>

@@ -32,4 +32,14 @@ if(isset($_POST['itemid']))
 		
 }
 
+if(isset($_POST['delitem']))
+{	
+	mysqli_query($conn,"DELETE FROM `cart` WHERE `cart`.`order_id` = ".$_POST['delitem']."");
+}
+
+if(isset($_POST['qtyid']))
+{	
+	mysqli_query($conn,"UPDATE `cart` SET `qty` = '".$_POST['newqty']."' WHERE `cart`.`order_id` = ".$_POST['qtyid']."");
+}
+
 ?>

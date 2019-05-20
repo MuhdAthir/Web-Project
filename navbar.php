@@ -31,8 +31,7 @@ if(isset($_POST['login'])){
 ?>
 <div class="topnav" id="myTopnav" style="position: sticky; z-index: 1; top: 0"> 
 	<a class="title" href="#home" class="nav-active"><i class="fas fa-home"></i> Home</a>
-	<a class="title" href="#product"><i class="fas fa-tshirt"></i> Product</a> 
-	<a class="title" href="#news"><i class="fas fa-level-up-alt"></i> Best Selling</a> 
+	<a class="title" href="#product"><i class="fas fa-level-up-alt"></i> Best Selling</a> 
 	<a class="title" href="#" onClick="openModal('signup')"><i class="fas fa-user-plus"></i> Sign Up</a> 
 	<a class="title" href="#news" onClick="openModal('signin')"><i class="fas fa-sign-in-alt"></i> Sign In</a> 
 	<a href="javascript:void(0);" class="icon" onclick="myFunction()"> <i class="fa fa-bars"></i> </a> 
@@ -142,4 +141,13 @@ if(isset($_POST['login'])){
 					}
 				} );
 		}
+		function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
 </script>

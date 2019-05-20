@@ -8,7 +8,26 @@ if ( !isset( $_SESSION[ "email" ] ) ) {
 };
 
 $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
-
+include_once( "colors.inc.php" );
+$ex = new GetMostCommonColors();
+$src = "../admin/productimages/" . $pro[ 'product_image' ];
+$colors = $ex->Get_Color( $src, 8, 0, 0, 24 );
+		$color_list = "";
+		$percentage_list= "";
+		$output = array();
+foreach ( $colors as $hex => $percentage ) {
+			if ( $percentage > 0 ) {
+				$color_list = $color_list . "#" . $hex . ", ";
+				$percentage_list = $percentage_list . $percentage . ", ";
+				$c = array();
+				$c["color"] = "#" . $hex;
+				$c["percent"] = $percentage;
+				$c["hue"] = $ex->Get_Hue($hex);
+				$c["css3"] = "#" . $ex->Get_CSS3($hex);
+				$c["spectrum"] = "#" . $ex->Get_Spectrum($hex);
+				$output[] = $c;
+			}
+		}	
 ?>
 <!doctype html>
 <html>
@@ -35,7 +54,7 @@ $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
 							<table class="table">
 								<tr>
 									<td colspan="2">
-										<?php echo $pro['product_name'] ?>
+										<strong><?php echo $pro['product_name'] ?></strong>
 									</td>
 								</tr>
 								<tr>
@@ -46,28 +65,15 @@ $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
 								</tr>
 								<tr>
 									<td>Stock</td>
-									<td>Unavailable</td>
-								</tr>
-								<tr>
-									<td>Color</td>
-									<td width="50%">
-										<marquee id="showmar"><em>Try to hover the color palette</em>
-										</marquee><a id="showcolor" style="display: none"></a>
-									</td>
+									<td><?php echo $pro['stock'] ?></td>
 								</tr>
 							</table>
 							<br>
 							<div class="grid-palet">
-								<div class="grid-item-palet" style="background-color: #d8d8d8" name="Alto" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #c0c0c0" name="Silver" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #a8a890" name="Gray Silver" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #c04848" name="Crail" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #787860" name="Flax Smoke" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #909078" name="Granite Green" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #606060" name="Scorpion" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #c06060" name="Fuzzy Wuzzy Brown" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #c09048" name="Tussock" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
-								<div class="grid-item-palet" style="background-color: #903030" name="Stiletto" onmouseover="getColor(this)" onmouseout="hideColor(this)"></div>
+								<?php foreach($output as $clr){ 
+								?>
+								<div class="grid-item-palet" style="background-color: <?php echo $clr['color'] ?>"><a style="color: white; font-size: 14px"><?php echo $clr['hue'] ?></a></div>
+								<?php } ?>
 							</div>
 							<br><br>
 							<form name="addcart" method="post">
@@ -77,7 +83,7 @@ $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
 									</div>
 									<input value="<?php echo $user['user_id'] ?>" name="userid" hidden>
 									<input value="<?php echo $_GET['id'] ?>" name="item" hidden>
-									<input type="number" min="0" max="10" value="0" class="form-control" style="padding: 10px" name="qty">
+									<input type="number" min="0" max="<?php echo $pro['stock'] ?>" value="1" class="form-control" style="padding: 10px" name="qty">
 									<div class="input-group-append">
 										<span class="input-group-text" onclick="addplus('add')"><i class="fas fa-plus"></i></span>
 									</div>
@@ -86,7 +92,9 @@ $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
 									</div>
 								</div>
 							</form>
-							<center><p id="popup" style="display: none;">Added to cart</p></center>
+							<center>
+								<p id="popup" style="display: none;">Added to cart</p>
+							</center>
 						</div>
 					</div>
 				</div>
@@ -98,8 +106,6 @@ $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
 </html>
 
 <script>
-	
-	var popup = 
 	function getColor( color ) {
 		var show = document.getElementById( 'showcolor' );
 		var mar = document.getElementById( 'showmar' );
@@ -131,9 +137,11 @@ $pro = getAllDatafrom( $conn, "product", "product_id", $_GET[ 'id' ] );
 
 				},
 				function ( response ) { // Required Callback Function
-					$( "#cart" ).load( window.location.href + " #cart" );
-					document.getElementById('popup').style.display = 'block';
-					setTimeout(function(){ document.getElementById('popup').style.display = 'none'; }, 3000);
+					$( "#myTopnav" ).load( window.location.href + " #myTopnav" );
+					document.getElementById( 'popup' ).style.display = 'block';
+					setTimeout( function () {
+						document.getElementById( 'popup' ).style.display = 'none';
+					}, 3000 );
 				} );
 		}
 	}

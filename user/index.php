@@ -6,6 +6,8 @@
 	if ( !isset( $_SESSION[ "email" ] ) ) {
 	header( "Location: ../index.php" );
 	};
+$getproduct = loopSQL($conn, "SELECT * FROM cart c, product p WHERE  c.status = 2  AND p.product_id = c.product_id GROUP BY c.product_id ORDER BY c.qty DESC");
+
 ?>
 <!doctype html>
 <html>
@@ -20,23 +22,50 @@
 <?php include('navbar.php') ?>
 
 <div class="container">
-	<div align="center">
-	<div class="card" style="width: 90%;" align="left">
-	<div class="card-header"><strong>Top 5 Best Selling</strong></div>
-	  <div class="card-body">
-		<ol>
-		<li>Be Happy Mug</li>  
-		<li>Nature Totebag</li>  
-		<li>Butterfly Pencil Case</li>  
-		<li>Smile Mug</li>  	
-		<li>Flower Totebag</li>  
-		</ol>
-	  </div>
-	</div>
-	</div>
+<iframe src="../fancy-slider/" width="100%" frameborder="0" id="iframe"></iframe>
 </div>
 
-	
+	  <div align="center" id="hot">
+	<br>
+    <div class="card" style="width: 80%;" align="left">
+      <div class="grid-container">
+		 <?php while($row = $getproduct->fetch_assoc())
+			{ ?>
+		 <div class="grid-item">
+          <div class="row">
+            <div class="col-6"> <img src="../admin/productimages/<?php echo $row['product_image'] ?>" class="img-pro card"> </div>
+            <div class="col-6">
+              <table class="table">
+                <tr>
+                  <td colspan="2"><?php echo $row['product_name'] ?></td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>RM <?php echo $row['price'] ?></td>
+                </tr>
+                <tr>
+                  <td>Stock</td>
+                  <td><?php echo $row['stock'] ?></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+		 <?php } ?>
+      </div>
+    </div>
+  </div>
 <script src="../js/all.js" type="text/javascript"></script>
 </body>
 </html>
+<script>
+	$( document ).ready( function () {
+		
+		var h = $(document).height();
+		var minus = 95;
+		var total = h-minus;
+
+		document.getElementById("iframe").style.height = total+"px";
+		
+	} );
+</script>
